@@ -16,7 +16,7 @@ gulp.task('css', ['html'], function () {
     .pipe($.sourcemaps.init())
     .pipe($.sass())
     .pipe($.postcss([], {to: 'dist/main.css'}))
-    .pipe($.sourcemaps.write())
+    .pipe($.sourcemaps.write('.'))
     .pipe(gulp.dest('dist'));
 });
 
@@ -25,7 +25,7 @@ gulp.task('css:without-option', ['html'], function () {
     .pipe($.sourcemaps.init())
     .pipe($.sass())
     .pipe($.postcss([]))
-    .pipe($.sourcemaps.write())
+    .pipe($.sourcemaps.write('.'))
     .pipe(gulp.dest('dist'));
 });
 
@@ -33,6 +33,6 @@ gulp.task('css:sass-only', ['html'], function () {
   return gulp.src('src/main.scss')
     .pipe($.sourcemaps.init())
     .pipe($.sass())
-    .pipe($.sourcemaps.write())
+    .pipe($.sourcemaps.write('.'))
     .pipe(gulp.dest('dist'));
 });
