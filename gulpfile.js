@@ -3,7 +3,6 @@
 var gulp = require('gulp');
 var $ = require('gulp-load-plugins')();
 var del = require('del');
-var path = require('path');
 
 gulp.task('clean', del.bind(null, ['dist']));
 
