@@ -3,6 +3,7 @@
 var gulp = require('gulp');
 var $ = require('gulp-load-plugins')();
 var del = require('del');
+var path = require('path');
 
 gulp.task('clean', del.bind(null, ['dist']));
 
@@ -12,10 +13,11 @@ gulp.task('html', ['clean'], function () {
 });
 
 gulp.task('css', ['html'], function () {
-  return gulp.src('src/main.scss')
+  return gulp.src('src/main.scss', {base: '.'})
     .pipe($.sourcemaps.init())
     .pipe($.sass())
     .pipe($.postcss([], {to: 'dist/main.css'}))
+    .pipe($.rename({dirname: '.'}))
     .pipe($.sourcemaps.write('.'))
     .pipe(gulp.dest('dist'));
 });
