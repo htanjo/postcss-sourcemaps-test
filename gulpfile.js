@@ -12,6 +12,15 @@ gulp.task('html', ['clean'], function () {
 });
 
 gulp.task('css', ['html'], function () {
+  return gulp.src('src/main.scss')
+    .pipe($.sourcemaps.init())
+    .pipe($.sass())
+    .pipe($.postcss([], {to: 'dist/main.css'}))
+    .pipe($.sourcemaps.write('.'))
+    .pipe(gulp.dest('dist'));
+});
+
+gulp.task('css:workaround', ['html'], function () {
   return gulp.src('src/main.scss', {base: '.'})
     .pipe($.sourcemaps.init())
     .pipe($.sass())
